@@ -13,3 +13,5 @@ services:
     container_name: api
     ports: 
       - "8081:8081"
+    environment: 
+      CONEXAO: jdbc:sqlserver://banco_dados;databaseName=sample_database;user=sa;password=P@ssw0rd1!

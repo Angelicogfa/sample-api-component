@@ -2,7 +2,7 @@
   (:require [clojure.java.jdbc :as jdbc])
   (:gen-class))
 
-(def ^:dynamic *db-config* "jdbc:sqlserver://localhost:1433;databaseName=sample_database;user=sa;password=P@ssw0rd1!;")
+(def ^:dynamic *db-config* (or (System/getenv "CONEXAO") "jdbc:sqlserver://localhost:1433;databaseName=sample_database;user=sa;password=P@ssw0rd1!;"))
 
 (defonce db-conn (delay *db-config*))
 
