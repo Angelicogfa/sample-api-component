@@ -19,7 +19,14 @@
     (->> (:connection-string config)
          (assoc this :conn)))
   (stop [this]
-    (assoc this :conn nil)))
+    (if-let [conn (:conn this)]
+      (do (.close conn)
+          (assoc this :conn nil))
+      this)))
 
 (defn new-database [config]
-  (-> Database config))
+  (map->Database config))
+
+
+
+
